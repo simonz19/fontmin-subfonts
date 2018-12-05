@@ -1,0 +1,14 @@
+{
+    "name": "fontmin-subfonts",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "node ./convert"
+    },
+    "dependencies": {
+        "fontmin":"^0.9.7"
+    },
+    "devDependencies": {
+    },
+    "license": "ISC"
+}
+  
