@@ -5,9 +5,11 @@
     "start": "node ./convert"
   },
   "dependencies": {
+    "co": "^4.6.0",
     "fontmin": "^0.9.7-beta",
     "fs-extra": "^7.0.1",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "thunkify": "^2.1.2"
   },
   "devDependencies": {},
   "license": "ISC"

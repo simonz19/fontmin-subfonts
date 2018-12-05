@@ -17,7 +17,7 @@ function readFileToArr(fReadName, callback) {
     arr.push(line);
   });
   objReadline.on("close", function() {
-    callback(arr);
+    callback(null, arr);
   });
 }
 
