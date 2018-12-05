@@ -1,15 +1,27 @@
 var Fontmin = require("fontmin");
 var { readFileToArr } = require("./utils.js");
-var { resolve } = require("path");
+var { join } = require("path");
+var fs = require("fs-extra");
+var args = require("minimist")(process.argv.slice(2));
+var fontDir = null;
+var subFontDir = join(__dirname, "subfonts", "GB2312.txt");
 
-readFileToArr(resolve(__dirname, "subfonts", "GB2312.txt"), function(arr) {
+if (args.f && !fs.existsSync(join(__dirname, args.f))) {
+  console.error("no such file exist");
+  process.exit(1);
+  return;
+}
+fontDir = join(__dirname, args.f || "./fonts/*.ttf");
+console.log("> generating subfonts from file " + fontDir);
+
+fs.emptyDirSync(join(__dirname, "build"));
+readFileToArr(subFontDir, function(arr) {
   var text = arr
     .slice(3)
     .map(item => item.slice(item.length - 1))
     .join("");
-  console.log(text);
   new Fontmin()
-    .src("./fonts/*.ttf")
+    .src(fontDir)
     .use(
       Fontmin.glyph({
         text: text
